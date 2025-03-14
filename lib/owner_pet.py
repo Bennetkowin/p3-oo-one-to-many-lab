@@ -10,13 +10,13 @@ class Pet:
         
     @property
     def pet_type(self):
-        return self.get_completion_type
+        return self._pet_type 
     
     @pet_type.setter
     def pet_type(self, pet_type):
         if pet_type not in self.PET_TYPES:
             raise Exception('Not a valid pet type.')
-        self._pet_type = pet_type
+        self._pet_type = pet_type  
         
     @property
     def owner(self):
@@ -24,11 +24,9 @@ class Pet:
     
     @owner.setter
     def owner(self, owner):
-        if not (isinstance(owner, Owner) or not owner):
+        if not (isinstance(owner, Owner) or owner is None): 
             raise Exception("Object is not of type Owner")
         self._owner = owner    
-        pass
-    pass
 
 class Owner:
     def __init__(self, name):
@@ -43,6 +41,4 @@ class Owner:
         pet.owner = self
        
     def get_sorted_pets(self):
-        return sorted(self.pets(), key=lambda pet: pet.name)        
-        pass
-    pass
+        return sorted(self.pets(), key=lambda pet: pet.name)  
